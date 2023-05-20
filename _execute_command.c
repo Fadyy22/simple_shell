@@ -3,14 +3,19 @@
 /**
  * _execute_command - executes a command provided by the user
  *
+ * @argv: main program arguments
  * @command: array of string as command and its arguments
+ * @counter: command counter
  *
- * Return: void
-*/
-
-void _execute_command(char *command[])
+ * Return: 0 on success, otherwise 1
+ */
+int _execute_command(char *argv[], char *command[], int counter)
 {
 	pid_t child;
+	int status;
+
+	if (argv == NULL)
+		return (1);
 
 	child = fork();
 
@@ -21,12 +26,17 @@ void _execute_command(char *command[])
 	}
 	else if (child == 0)
 	{
-		execve(command[0], command, NULL);
-		perror("./hsh");
-		exit(1);
+		if (execve(command[0], command, NULL) == -1)
+		{
+			_error_handler(argv[0], counter, command[0]);
+			free(command);
+			exit(1);
+		}
+		exit(0);
 	}
 	else
 	{
-		wait(NULL);
+		waitpid(child, &status, 0);
 	}
+	return (0);
 }

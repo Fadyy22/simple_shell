@@ -6,8 +6,7 @@
  * @input: string to remove new line from
  *
  * Return: new string without new line character
-*/
-
+ */
 char *_remove_newline(char *input)
 {
 	char *new_input;

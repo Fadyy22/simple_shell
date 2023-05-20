@@ -7,7 +7,6 @@
  *
  * Return: number of commands
  */
-
 int _count_commands(char *command)
 {
 	char *single_command, *command_copy;

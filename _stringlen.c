@@ -7,7 +7,6 @@
  *
  * Return: length of the string
  */
-
 int _stringlen(char *input)
 {
 
