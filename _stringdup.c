@@ -6,7 +6,7 @@
  * @input: string to be copied
  *
  * Return: copy of the string
-*/
+ */
 char *_stringdup(char *input)
 {
 	char *copy;

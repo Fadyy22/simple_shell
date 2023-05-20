@@ -4,7 +4,7 @@
  * _print_prompt - prints "$ " prompt to the user
  *
  * Return: void
-*/
+ */
 void _print_prompt(void)
 {
 	char *prompt = "$ ";
