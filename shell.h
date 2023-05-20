@@ -10,6 +10,10 @@
 
 void _print_prompt(void);
 void _execute_command(char **command);
-char *_remove_newline(char *input, ssize_t no_chars_read);
+char *_remove_newline(char *input);
+int _stringlen(char *input);
+char *_stringdup(char *input);
+int _error_handler(char *name, char *command);
+int _count_commands(char *command);
 
 #endif
