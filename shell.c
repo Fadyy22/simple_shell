@@ -14,7 +14,6 @@ int main(int argc, char **argv, char **env)
 {
 	int counter;
 	(void)argc;
-	(void)env;
 
 	counter = 1;
 
@@ -31,19 +30,20 @@ int main(int argc, char **argv, char **env)
 		if (no_chars_read == EOF)
 		{
 			if (isatty(STDIN_FILENO))
+			{
 				write(STDOUT_FILENO, "\n", 2);
+			}
+			free(get_input);
 			exit(0);
 		}
 
 		new_input = _remove_newline(get_input);
 		full_command = _create_full_command(new_input);
-		_execute_command(argv, full_command, counter);
+		_execute_command(argv, full_command, counter, env);
 		counter++;
+		free(get_input);
+		free(new_input);
 
-	}
-	if (isatty(STDIN_FILENO) == 0)
-	{
-		return (0);
 	}
 	return (0);
 }

@@ -18,9 +18,11 @@ int _error_handler(char *name, int counter, char *command)
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, string_counter, _stringlen(string_counter));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, command, _stringlen(command));
+	write(STDERR_FILENO, command, _stringlen(command) + 1);
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, "not found", 9);
 	write(STDERR_FILENO, "\n", 1);
+
+	free(string_counter);
 	return (0);
 }

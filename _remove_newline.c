@@ -14,7 +14,7 @@ char *_remove_newline(char *input)
 
 	input_len = _stringlen(input);
 
-	new_input = malloc(sizeof(char) * (input_len - 1));
+	new_input = malloc(sizeof(char) * input_len);
 	if (new_input == NULL)
 	{
 		perror("malloc");
@@ -23,5 +23,6 @@ char *_remove_newline(char *input)
 	for (i = 0; i < input_len - 1; i++)
 		new_input[i] = input[i];
 
+	new_input[i] = '\0';
 	return (new_input);
 }

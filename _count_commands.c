@@ -10,7 +10,7 @@
 int _count_commands(char *command)
 {
 	char *single_command, *command_copy;
-	const char *delim = " \t\n";
+	const char *delim = " \t\a\r\n";
 	int no_command = 0;
 
 	command_copy = _stringdup(command);

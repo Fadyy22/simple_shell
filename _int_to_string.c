@@ -23,12 +23,13 @@ char *_int_to_string(int number)
 			no_digits++;
 		}
 	}
-	string_int = malloc(sizeof(char) * no_digits);
+	string_int = malloc(sizeof(char) * (no_digits + 1));
 	if (string_int == NULL)
 	{
 		perror("malloc");
 		return (NULL);
 	}
+	string_int[no_digits] = '\0';
 
 	while (no_digits > 0)
 	{
@@ -36,6 +37,5 @@ char *_int_to_string(int number)
 		temp = temp / 10;
 		no_digits--;
 	}
-
 	return (string_int);
 }

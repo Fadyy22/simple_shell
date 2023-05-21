@@ -19,7 +19,7 @@ char **_create_full_command(char *command)
 		return (NULL);
 	command_copy = _stringdup(command);
 
-	full_command = malloc(sizeof(char *) * no_command);
+	full_command = malloc(sizeof(char *) * (no_command + 1));
 	if (full_command == NULL)
 	{
 		perror("malloc");
@@ -34,12 +34,11 @@ char **_create_full_command(char *command)
 			perror("malloc");
 			exit(1);
 		}
-		full_command[i] = _stringdup(single_command);
+		_stringcpy(full_command[i], single_command);
 		single_command = strtok(NULL, delim);
 	}
-	full_command[i] = NULL;
 
+	full_command[i] = NULL;
 	free(command_copy);
-	free(single_command);
 	return (full_command);
 }
