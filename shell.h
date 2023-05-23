@@ -16,7 +16,7 @@ int _execute_command(char *argv[], char *command[], int counter, char *env[]);
 int _stringlen(char *input);
 char *_stringdup(char *input);
 char *_stringcpy(char *dest, const char *src);
-int _error_handler(char *name, int counter, char *command);
+void _error_handler(char *name, int counter, char **command, int status);
 int _count_commands(char *command);
 char **_create_full_command(char *command);
 char *_int_to_string(int number);
@@ -27,5 +27,7 @@ char *_check_path(char *command);
 char *_stringcat(char *dest, const char *src);
 char *_get_input(void);
 void _print_env(char **env);
+int _check_exit(char **full_command);
+long int _string_to_int(char *string);
 
 #endif

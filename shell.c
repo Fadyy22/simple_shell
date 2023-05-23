@@ -33,6 +33,14 @@ int main(int argc, char **argv, char **env)
 		full_command = _create_full_command(get_input);
 		if (full_command == NULL)
 			continue;
+		if (_check_exit(full_command) == -1)
+		{
+			_error_handler(argv[0], counter, full_command, 0);
+			if (!isatty(STDIN_FILENO))
+				exit(2);
+			counter++;
+			continue;
+		}
 		if (_stringncmp(full_command[0], "env", 3) == 0)
 		{
 			_print_env(env);

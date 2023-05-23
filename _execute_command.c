@@ -18,7 +18,7 @@ int _execute_command(char **argv, char **command, int counter, char **env)
 
 	if (cmd == NULL)
 	{
-		_error_handler(argv[0], counter, command[0]);
+		_error_handler(argv[0], counter, command, 1);
 		free(command);
 		if (isatty(STDIN_FILENO))
 			return (127);

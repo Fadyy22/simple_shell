@@ -41,8 +41,6 @@ char **_create_full_command(char *command)
 		_stringcpy(full_command[i], single_command);
 		single_command = strtok(NULL, delim);
 	}
-	if (_stringncmp(full_command[0], "exit", 4) == 0)
-		exit(0);
 
 	full_command[i] = NULL;
 	free(command_copy);
