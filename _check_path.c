@@ -8,7 +8,7 @@
  *
  * Return: command path if it exists,
  * if it doesn't exist return the command as it was
-*/
+ */
 char *_check_path(char *command)
 {
 	char *path, *new_path, *new_command, *dir;
@@ -17,30 +17,36 @@ char *_check_path(char *command)
 	struct stat buf;
 
 	path = _get_path();
-	new_path = _stringdup(path);
-
-	dir = strtok(new_path, ":");
-	while (dir != NULL)
+	if (path)
 	{
-		dir_len = _stringlen(dir);
-		new_command = malloc(sizeof(char) * (dir_len + command_len + 2));
-		_stringcpy(new_command, dir);
-		_stringcat(new_command, "/");
-		_stringcat(new_command, command);
-		_stringcat(new_command, "\0");
+		new_path = _stringdup(path);
 
-		if (stat(new_command, &buf) == 0)
+		dir = strtok(new_path, ":");
+		while (dir != NULL)
 		{
-			free(new_path);
-			return (new_command);
+			dir_len = _stringlen(dir);
+			new_command = malloc(sizeof(char) * (dir_len + command_len + 2));
+			_stringcpy(new_command, dir);
+			_stringcat(new_command, "/");
+			_stringcat(new_command, command);
+			_stringcat(new_command, "\0");
+
+			if (stat(new_command, &buf) == 0)
+			{
+				free(new_path);
+				return (new_command);
+			}
+			else
+			{
+				free(new_command);
+				dir = strtok(NULL, ":");
+			}
 		}
-		else
-		{
-			free(new_command);
-			dir = strtok(NULL, ":");
-		}
+		free(new_path);
+
+		if (stat(command, &buf) == 0)
+			return (command);
+		return (NULL);
 	}
-	free(new_path);
-	free(dir);
-	return (command);
+	return (NULL);
 }

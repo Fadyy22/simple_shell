@@ -13,7 +13,6 @@ extern char **environ;
 
 void _print_prompt(void);
 int _execute_command(char *argv[], char *command[], int counter, char *env[]);
-char *_remove_newline(char *input);
 int _stringlen(char *input);
 char *_stringdup(char *input);
 char *_stringcpy(char *dest, const char *src);
@@ -26,5 +25,7 @@ char *_get_path(void);
 int _stringncmp(const char *first, const char *second, size_t no_bytes);
 char *_check_path(char *command);
 char *_stringcat(char *dest, const char *src);
+char *_get_input(void);
+void _print_env(char **env);
 
 #endif

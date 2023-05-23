@@ -16,34 +16,31 @@ int main(int argc, char **argv, char **env)
 	(void)argc;
 
 	counter = 1;
-
 	while (1)
 	{
-		char *get_input = NULL, *new_input;
+		char *get_input;
 		char **full_command;
-		size_t n = 0;
-		ssize_t no_chars_read;
 
 		_print_prompt();
 
-		no_chars_read = getline(&get_input, &n, stdin);
-		if (no_chars_read == EOF)
+		get_input = _get_input();
+		if (get_input[0] == '\n' || get_input == NULL)
 		{
-			if (isatty(STDIN_FILENO))
-			{
-				write(STDOUT_FILENO, "\n", 2);
-			}
 			free(get_input);
-			exit(0);
+			continue;
 		}
 
-		new_input = _remove_newline(get_input);
-		full_command = _create_full_command(new_input);
+		full_command = _create_full_command(get_input);
+		if (full_command == NULL)
+			continue;
+		if (_stringncmp(full_command[0], "env", 3) == 0)
+		{
+			_print_env(env);
+			continue;
+		}
 		_execute_command(argv, full_command, counter, env);
 		counter++;
 		free(get_input);
-		free(new_input);
-
 	}
 	return (0);
 }

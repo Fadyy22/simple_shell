@@ -10,19 +10,21 @@
  *
  * Return: 0 on success, otherwise 1
  */
-int _execute_command(char *argv[], char *command[], int counter, char *env[])
+int _execute_command(char **argv, char **command, int counter, char **env)
 {
 	pid_t child;
 	int status;
-	struct stat buf;
 	char *cmd = _check_path(command[0]);
 
-	if (stat(cmd, &buf) != 0)
+	if (cmd == NULL)
 	{
 		_error_handler(argv[0], counter, command[0]);
 		free(command);
-		return (127);
+		if (isatty(STDIN_FILENO))
+			return (127);
+		exit(127);
 	}
+
 	if (argv == NULL)
 		return (1);
 

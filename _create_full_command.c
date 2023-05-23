@@ -10,13 +10,17 @@
 char **_create_full_command(char *command)
 {
 	int no_command, i;
-	const char *delim = " \t\n\a\r";
+	const char *delim = " \t\n";
 	char *command_copy, *single_command;
 	char **full_command;
+
+	if (command == NULL)
+		return (0);
 
 	no_command = _count_commands(command);
 	if (no_command == 0)
 		return (NULL);
+
 	command_copy = _stringdup(command);
 
 	full_command = malloc(sizeof(char *) * (no_command + 1));
@@ -37,6 +41,8 @@ char **_create_full_command(char *command)
 		_stringcpy(full_command[i], single_command);
 		single_command = strtok(NULL, delim);
 	}
+	if (_stringncmp(full_command[0], "exit", 4) == 0)
+		exit(0);
 
 	full_command[i] = NULL;
 	free(command_copy);

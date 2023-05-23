@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * _stringcat - concat src string to dest string
  *
@@ -13,7 +14,10 @@ char *_stringcat(char *dest, const char *src)
 
 	for (i = 0; dest[i] != '\0'; i++)
 		;
+
 	for (j = 0; src[j] != '\0'; j++)
-		dest[j + i] = '\0\;
+		dest[j + i] = src[j];
+
+	dest[j + i] = '\0';
 	return (dest);
 }
