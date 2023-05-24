@@ -7,7 +7,7 @@
  *
  * Return: number of commands
  */
-int _count_commands(char *command)
+int _count_commands(const char *command)
 {
 	char *single_command, *command_copy;
 	const char *delim = " \t\n";

@@ -22,15 +22,15 @@ int main(int argc, char **argv, char **env)
 		char **full_command;
 
 		_print_prompt();
-
 		get_input = _get_input();
 		if (get_input[0] == '\n' || get_input == NULL)
 		{
 			free(get_input);
 			continue;
 		}
-
 		full_command = _create_full_command(get_input);
+		free(get_input);
+		get_input = NULL;
 		if (full_command == NULL)
 			continue;
 		if (_check_exit(full_command) == -1)
@@ -47,8 +47,9 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 		_execute_command(argv, full_command, counter, env);
+		_free_full_command(full_command);
+		full_command = NULL;
 		counter++;
-		free(get_input);
 	}
 	return (0);
 }

@@ -11,6 +11,8 @@ long int _string_to_int(char *string)
 {
 	int number = 0, counter = 0;
 
+	if (string == NULL)
+		return (-1);
 	if (!string[1])
 	{
 		number = string[0] - '0';

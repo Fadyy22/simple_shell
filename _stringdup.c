@@ -7,7 +7,7 @@
  *
  * Return: copy of the string
  */
-char *_stringdup(char *input)
+char *_stringdup(const char *input)
 {
 	char *copy;
 	int i;

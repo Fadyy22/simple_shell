@@ -12,6 +12,9 @@ char *_stringcat(char *dest, const char *src)
 {
 	int i, j;
 
+	if (src == NULL)
+		return (dest);
+
 	for (i = 0; dest[i] != '\0'; i++)
 		;
 

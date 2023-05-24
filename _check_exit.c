@@ -11,15 +11,20 @@
 
 int _check_exit(char **full_command)
 {
+	long int status;
+
 	if (_stringncmp(full_command[0], "exit", 4) == 0 && !full_command[1])
 	{
+		_free_full_command(full_command);
 		exit(0);
 	}
 
+	status = _string_to_int(full_command[1]);
 	if (_stringncmp(full_command[0], "exit", 4) == 0
-		&& _string_to_int(full_command[1]) != -1)
+		&& status != -1)
 	{
-		exit(_string_to_int(full_command[1]));
+		_free_full_command(full_command);
+		exit(status);
 	}
 	else if (_stringncmp(full_command[0], "exit", 4) != 0)
 		return (1);
