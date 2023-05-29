@@ -12,10 +12,9 @@
 
 int main(int argc, char **argv, char **env)
 {
-	int counter;
+	int counter = 1;
 	(void)argc;
 
-	counter = 1;
 	while (1)
 	{
 		char *get_input;
@@ -36,6 +35,7 @@ int main(int argc, char **argv, char **env)
 		if (_check_exit(full_command) == -1)
 		{
 			_error_handler(argv[0], counter, full_command, 0);
+			_free_full_command(full_command);
 			if (!isatty(STDIN_FILENO))
 				exit(2);
 			counter++;
