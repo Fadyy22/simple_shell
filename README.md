@@ -41,7 +41,7 @@ The shell supports both interactive and non-interactive modes, allowing users to
 
 - **shell.h** Main header file that contains all functions used.
 - **shell.c** Main file responsible for starting the shell, prompt display, input handling, and command execution.
-- ***.c** All functions used to get input, handle errors, execute commands, and string manipulation.
+- ***.c** All functions used to get input, handle errors, execute commands, and manipulate strings.
 
 
 ## Compilation
